@@ -9,7 +9,7 @@
 from src.constants.common import FIELD_TYPES
 from src.core import ImageInstanceOps
 from src.logger import logger
-from src.processors.manager import PROCESSOR_MANAGER
+from src.processors.manager import get_processor_manager
 from src.utils.parsing import (
     custom_sort_output_columns,
     open_template_with_defaults,
@@ -68,7 +68,7 @@ class Template:
         # load image pre_processors
         self.pre_processors = []
         for pre_processor in pre_processors_object:
-            ProcessorClass = PROCESSOR_MANAGER.processors[pre_processor["name"]]
+            ProcessorClass = get_processor_manager().processors[pre_processor["name"]]
             pre_processor_instance = ProcessorClass(
                 options=pre_processor["options"],
                 relative_dir=relative_dir,

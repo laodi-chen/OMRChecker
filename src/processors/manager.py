@@ -76,5 +76,12 @@ class ProcessorManager:
         logger.info(f"Loaded processors: {loaded_packages}")
 
 
-# Singleton export
-PROCESSOR_MANAGER = ProcessorManager()
+_PROCESSOR_MANAGER = None
+
+
+def get_processor_manager():
+    """Lazily create the processor manager to avoid import-time cycles."""
+    global _PROCESSOR_MANAGER
+    if _PROCESSOR_MANAGER is None:
+        _PROCESSOR_MANAGER = ProcessorManager()
+    return _PROCESSOR_MANAGER

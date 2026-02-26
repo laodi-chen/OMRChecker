@@ -5,6 +5,9 @@
 
 # Everything in inputs/ and outputs/
 inputs/*
+dist/*
+build/*
+out/*
 outputs/*
 
 # Misc
